@@ -25,7 +25,9 @@ public class BasicNavigation {
         Thread.sleep(3000); // for demo , wait three seconds
         //you can also see it as a tab
 String title = driver.getTitle(); //returns <title> Some <title>
-        String expectedTitle = "Google";
+        String expectedTitle = "Google";//we provide it
+        driver.manage().window().maximize();// to maximize browser
+        //driver.manage().window().fullscreen();
         //and print it
         System.out.println("Title is " + title);
 
@@ -34,9 +36,29 @@ String title = driver.getTitle(); //returns <title> Some <title>
         } else {
             System.out.println("TEST FAILED!");
         }
+
+        //go to another website within the same window
+        driver.navigate().to("http://amazon.com");
+
+        if (driver.getTitle().toLowerCase().contains("amazon")){
+
+            System.out.println("TEST PASSED!");
+        } else {
+            System.out.println("TEST FAILED!");
+        }
+
+
         driver.close(); //to close browser. must be at the end!!!!
         //browser can not close it self
 
 
+    }
+
+    public static void verifyEquals(String arg1, String arg2){
+        if (arg1.equals(arg2)){
+            System.out.println("TEST PASSED!");
+        } else {
+            System.out.println("TEST FAILED!");
+        }
     }
 }
