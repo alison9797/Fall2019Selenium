@@ -46,6 +46,9 @@ String title = driver.getTitle(); //returns <title> Some <title>
         } else {
             System.out.println("TEST FAILED!");
         }
+        //come back to Google
+        driver.navigate().back();
+        verifyEquals(driver.getTitle() , "Google");
 
 
         driver.close(); //to close browser. must be at the end!!!!
@@ -53,7 +56,7 @@ String title = driver.getTitle(); //returns <title> Some <title>
 
 
     }
-
+// method  verifyEquals is static because main method is static
     public static void verifyEquals(String arg1, String arg2){
         if (arg1.equals(arg2)){
             System.out.println("TEST PASSED!");
