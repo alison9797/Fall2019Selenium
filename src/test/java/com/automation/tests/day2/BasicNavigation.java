@@ -39,6 +39,7 @@ String title = driver.getTitle(); //returns <title> Some <title>
 
         //go to another website within the same window
         driver.navigate().to("http://amazon.com");
+        Thread.sleep(3000);
 
         if (driver.getTitle().toLowerCase().contains("amazon")){
 
@@ -48,11 +49,21 @@ String title = driver.getTitle(); //returns <title> Some <title>
         }
         //come back to Google
         driver.navigate().back();
+        //checking if page title is equals to google
         verifyEquals(driver.getTitle() , "Google");
-
-
+//move forward in the browser history
+        //again, going to amazon
+        driver.navigate().forward();
+        Thread.sleep(3000);
+        System.out.println("Title: " + driver.getTitle());
+        //driver.getTitle() - return title of the page that currently open
+        System.out.println("URL : " + driver.getCurrentUrl()); // to get current URL
+        driver.navigate().refresh();//to reload the webpage
+        Thread.sleep(3000);
+//driver.navigate().to(); the same with driver.get();
         driver.close(); //to close browser. must be at the end!!!!
         //browser can not close it self
+       // driver.quit();
 
 
     }
