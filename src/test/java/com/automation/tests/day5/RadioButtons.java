@@ -11,8 +11,8 @@ import java.util.List;
 
 public class RadioButtons {
     public static void main(String[] args) throws Exception {
-
-        WebDriverManager.chromedriver().setup();
+        //SET UP DRIVER:
+        WebDriverManager.chromedriver().version("79").setup();
         WebDriver driver = new ChromeDriver();
 
         driver.get("http://practice.cybertekschool.com/radio_buttons");
