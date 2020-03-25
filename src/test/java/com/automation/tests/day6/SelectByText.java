@@ -10,21 +10,29 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 
 public class SelectByText {
+
     public static void main(String[] args) {
+
         WebDriver driver = DriverFactory.createDriver("chrome");
         BrowserUtilities.wait(3);
+
         driver.get("http://practice.cybertekschool.com/dropdown");
         BrowserUtilities.wait(3);
+
         //create webelement object for drop-down first
         WebElement simpleDropdown = driver.findElement(By.id("dropdown"));
-        //provide webelement object into constructor
+
+        //provide (pass) webelement object into constructor
+
         Select selectSimpleDropdown = new Select(simpleDropdown);
         //select by visible text
         selectSimpleDropdown.selectByVisibleText("Option 2");
         BrowserUtilities.wait(3);
         //and select option 1
+
         selectSimpleDropdown.selectByVisibleText("Option 1");
         BrowserUtilities.wait(3);
+
         //select you DOB
         Select selectYear = new Select(driver.findElement(By.id("year")));
         Select selectMonth = new Select(driver.findElement(By.id("month")));
@@ -37,11 +45,12 @@ public class SelectByText {
         selectDay.selectByVisibleText("27");
 
 BrowserUtilities.wait(3);
-        //select all months by one
+        //select all months one by one
 
 //.getOptions(); -- returns all options from dropdown as List<WebElement>
         List<WebElement> months = selectMonth.getOptions();
         for (WebElement month : months){
+
             //get the month name and select based on that
             selectMonth.selectByVisibleText(month.getText());
             BrowserUtilities.wait(1);
@@ -54,7 +63,7 @@ BrowserUtilities.wait(3);
 
         //option that is currently selected
         //getFirstSelectedOption() --- returns a WebElement, that's why we need to call getText()
-        //getText() ewtrieves visible text from the webelement
+        //getText() we retrieves visible text from the webelement
 
         String selected = stateSelect.getFirstSelectedOption().getText();
 
@@ -69,9 +78,8 @@ BrowserUtilities.wait(3);
         for (WebElement stateOption : states ){
             System.out.println(stateOption.getText());
         }
-             {
 
-        }
+
 
         BrowserUtilities.wait(3);
         driver.quit();

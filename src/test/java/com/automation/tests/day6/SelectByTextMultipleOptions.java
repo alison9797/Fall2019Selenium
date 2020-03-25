@@ -16,6 +16,7 @@ public class SelectByTextMultipleOptions {
         BrowserUtilities.wait(3);
         driver.get("http://practice.cybertekschool.com/dropdown");
         BrowserUtilities.wait(3);
+
         Select languagesSelect = new Select(driver.findElement(By.name("Languages")));
         boolean isMultiple = languagesSelect.isMultiple();
         System.out.println(isMultiple);// if it true. you can select more than one option
