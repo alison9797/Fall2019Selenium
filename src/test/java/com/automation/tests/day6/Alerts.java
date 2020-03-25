@@ -5,8 +5,6 @@ import com.automation.tests.utilities.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.List;
 
 public class Alerts {
@@ -34,7 +32,23 @@ public class Alerts {
             System.out.println("expected = " + expected);
             System.out.println("actual = " + actual);
         }
+        BrowserUtilities.wait(3);
 
+        buttons.get(1).click();//to click on the second button
+        BrowserUtilities.wait(3);
+        //to click cancel :
+        driver.switchTo().alert().dismiss();//RESULT MUST BE :You clicked: Cancel
+
+        String expected2 = "You clicked: Cancel";
+        String actual2= driver.findElement(By.id("result")).getText();
+
+        if (expected2.equals(actual2)){
+            System.out.println(" TEST PASSED");
+        } else {
+            System.out.println("TEST FAILED");
+            System.out.println("expected = " + expected2);
+            System.out.println("actual = " + actual2);
+        }
 
 
 
