@@ -1,5 +1,4 @@
 package com.automation.tests.day2;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -33,8 +32,6 @@ public class GoogleSearchTest {
         news.click();//to click on the element
         Thread.sleep(4);
 
-
         driver.quit();
-
     }
 }
