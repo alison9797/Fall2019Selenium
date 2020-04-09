@@ -2,9 +2,26 @@ package com.automation.tests.day8;
 
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class BasicTestNGTests {
+
+    //runs before every test automatically
+    //works as precondition or set up
+    @BeforeMethod
+    public void setup(){
+        System.out.println("Before Method");
+    }
+
+
+    //runs automatically after every test
+    @AfterMethod
+    public void teardown(){
+        System.out.println("AFTER METHOD");
+
+    }
 
     @Test(description = "Verify if method can reverse a string")
     public void test1(){
@@ -13,6 +30,8 @@ public class BasicTestNGTests {
         String expected = "apple";
         Assert.assertEquals(actual,expected);
     }
+
+
     @Test
     public void test2(){
         System.out.println("test 2");
@@ -20,7 +39,7 @@ public class BasicTestNGTests {
         int num2 = 10;
         //it calls hard assertion
         //if assertion fails it stops yje execution(due to exception)
-        Assert.assertTrue(num1>num2);
+        Assert.assertTrue(num1 < num2);
     }
 
 }
