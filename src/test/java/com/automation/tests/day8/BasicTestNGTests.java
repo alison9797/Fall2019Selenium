@@ -2,11 +2,24 @@ package com.automation.tests.day8;
 
 
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class BasicTestNGTests {
+
+    //runs only once in the class before @BeforeMethod and @Test
+    //regardless on number of tests. it runs only once
+    @BeforeClass
+    public void beforeClass(){
+        //something that should be done only once in the class before all tests
+        System.out.println("BEFORE CLASS");
+
+    }
+
+    @AfterClass
+    //something that should be done only once in the class after all tests
+    public void afterClass(){
+        System.out.println("AFTER CLASS");
+    }
 
     //runs before every test automatically
     //works as precondition or set up
