@@ -1,54 +1,26 @@
 package com.automation.tests.day8;
 
+
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 public class BasicTestNGTests {
-    //runs only once before @BeforeClass and @BeforeMethod
-    @BeforeTest
-    public void beforeTest(){
-        System.out.println("BEFORE TEST");
-    }
-    //runs only once after @AfterClass after @AfterMethod
-    @AfterTest
-    public void afterTest(){
-        System.out.println("AFTER TEST");
-    }
-    //runs only once in the class before @beforeethod and before any test
-    //regardless on number of tests, it runs only once
-    @BeforeClass
-    public void beforeClass(){
-        System.out.println("BEFORE CLASS");
-    }
-    @AfterClass
-    public void afterClass(){
-        System.out.println("AFTER CLASS");
-    }
-//runs before every test automatically
-    //works as pre-condition or setup
-    @BeforeMethod
-    public void setup(){
-        System.out.println("BEFORE METHOD");
-    }
-    //runs automatically after every test
-    @AfterMethod
-    public void teardown(){
-        System.out.println("AFTER METHOD");
-    }
-    @Test
+
+    @Test(description = "Verify if method can reverse a string")
     public void test1(){
-        System.out.println("TEST 1");
-        String expected = "apple";
+        System.out.println("test 1");
         String actual = "apple";
+        String expected = "apple";
         Assert.assertEquals(actual,expected);
     }
     @Test
     public void test2(){
-        System.out.println("TEST 2");
-        int num1 = 5;
+        System.out.println("test 2");
+        int num1 =5;
         int num2 = 10;
         //it calls hard assertion
-        //if assertion fails - it stops the execution (due to exception)
-        Assert.assertTrue(num2 > num1);
+        //if assertion fails it stops yje execution(due to exception)
+        Assert.assertTrue(num1>num2);
     }
+
 }
