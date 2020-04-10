@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+
 public class SearchTests {
     private WebDriver driver;
 
@@ -45,6 +46,38 @@ public class SearchTests {
             }
 
         }
+
+    }
+                            /* #############TASK############################
+                          Given user is on the amazon.com
+                          When user enters "java" as a search item
+                          Then user clicks on the search button
+                          And user clicks on the first search item
+                          And user verifies that title of the search item contains "java"
+                           */
+
+    @Test(description = "Search for java book on amazon")
+    public void amazonSearchTest(){
+
+        driver.get("http://amazon.com");
+        BrowserUtilities.wait(5);
+
+        driver.findElement(By.id("twotabsearchtextbox")) .sendKeys("Java", Keys.ENTER);
+        BrowserUtilities.wait(5);
+
+        List<WebElement> searchItems = driver.findElements(By.tagName("h2"));
+       //click on the first item
+        searchItems.get(0).click();
+        BrowserUtilities.wait(5);
+
+        WebElement productTitle = driver.findElement(By.id("productTitle"))  ;
+        String productTitleString = productTitle.getText();
+        System.out.println(productTitleString);
+        Assert.assertTrue(productTitleString.contains("Java"));
+
+
+
+
 
     }
 
