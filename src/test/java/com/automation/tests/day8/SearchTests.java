@@ -1,6 +1,5 @@
 package com.automation.tests.day8;
 
-
 import com.automation.tests.utilities.BrowserUtilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -15,45 +14,53 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class SearchTest {
+public class SearchTests {
     private WebDriver driver;
 
     @Test
     public void googleSearchTest(){
-        driver.get("https://www.google.com");
+        driver.get("http://google.com");
+        BrowserUtilities.wait(3);
         driver.findElement(By.name("q")).sendKeys("java", Keys.ENTER);
-        BrowserUtilities.wait(2);
+        BrowserUtilities.wait(5);
 
-        //since every search item has a tag name "h3"
-        //it's the easiest way to collect all of them
+        //since every search item has a tagname <h3>
+        //it is easier way to collect all of them
         List<WebElement> searchItems = driver.findElements(By.tagName("h3"));
-        for (WebElement searchItem : searchItems) {
+
+        for (WebElement searchItem : searchItems ) {
             String var = searchItem.getText();
-            //System.out.println(searchItem.getText());
+
+               //if there is text -> print it 
             if (!var.isEmpty()){
                 System.out.println(var);
-//verify that every search result contains java
+                
+                        //verify that every search result contains "java" word
+                //if some of the search results doesn't contain java word
+                //it will fail the test
                 Assert.assertTrue(var.toLowerCase().contains("java"));
+                System.out.println(var.toLowerCase());
+                System.out.println();
+                
             }
+
         }
 
     }
 
-    @BeforeMethod
-    public void setDriver(){
-        //set up driver
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
 
+    @BeforeMethod
+    public void setup(){
+    //setup webdriver
+        WebDriverManager.chromedriver().version("79").setup();
+        driver = new ChromeDriver();
     }
+
     @AfterMethod
     public void teardown(){
-        //close browser and destroy webdriver object
+        //close and destroy webdriver object
         driver.quit();
+
     }
-
-    
-
-
 
 }
