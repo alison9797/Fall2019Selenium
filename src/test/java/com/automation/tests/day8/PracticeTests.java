@@ -13,6 +13,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class PracticeTests {
     private WebDriver driver;
 
@@ -39,6 +41,21 @@ public class PracticeTests {
         String actual = driver.findElement(By.name("confirmation_message")).getText();
         String expected = "Your e-mail's been sent!";
         Assert.assertEquals(actual,expected, "Confirmation message is not valid!");
+
+    }
+    @Test
+    public void checkBoxes(){
+        driver.findElement(By.linkText("Checkboxes")).click();
+        //locator for specific checkbox , xpath : //input[]
+        //collect all checkboxes
+        List<WebElement> checkBoxes = driver.findElements(By.tagName("input"));
+        BrowserUtilities.wait(4);
+
+        checkBoxes.get(0).click();// to click on first check box
+
+        Assert.assertTrue(checkBoxes.get(0).isSelected(), "Checkboxe #1 is not selected!");
+        BrowserUtilities.wait(4);
+
 
     }
 
