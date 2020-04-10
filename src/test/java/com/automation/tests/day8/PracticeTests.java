@@ -1,7 +1,9 @@
 package com.automation.tests.day8;
 
+import com.automation.tests.utilities.BrowserUtilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,6 +27,19 @@ public class PracticeTests {
        //if assertion fails -? it will throw exception and message will be printed
         //3 parameters:( expected, actual, message in case of error)
         Assert.assertEquals(actual,expected, "Sub-header message is not matching!");
+    }
+
+    @Test
+    public void forgotPassword(){
+        driver.findElement(By.linkText("Forgot Password")).click();
+        BrowserUtilities.wait(3);
+        driver.findElement(By.name("email")).sendKeys("alison9797@mail.com", Keys.ENTER);
+        BrowserUtilities.wait(3);
+
+        String actual = driver.findElement(By.name("confirmation_message")).getText();
+        String expected = "Your e-mail's been sent!";
+        Assert.assertEquals(actual,expected, "Confirmation message is not valid!");
+
     }
 
     @BeforeMethod
