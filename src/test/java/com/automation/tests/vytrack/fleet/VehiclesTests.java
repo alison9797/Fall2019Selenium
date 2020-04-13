@@ -19,11 +19,23 @@ public class VehiclesTests {
     //correct credentials for Store Manager
     private String username = "storemanager85";
     private String password = "UserUser123";
+
     private By usernameBy = By.id("prependedInput");
     private By passwordBy = By.id("prependedInput2");
-    private By fleetBy = By.xpath("//span[@class='title title-level-1' and contains(text(),'Fleet')]");
-private By subtitleBy = By.className("oro-subtitle");
 
+    private By fleetBy = By.xpath("//span[@class='title title-level-1' and contains(text(),'Fleet')]");
+    private By subtitleBy = By.className("oro-subtitle");
+    private By pageNumberBy= By.cssSelector("input[type='number']");
+
+@Test
+public void verifyPageNumber(){
+    String expected = "1";
+    String actual = driver.findElement(pageNumberBy).getAttribute("value");
+
+    Assert.assertEquals(actual, expected);
+
+
+}
     @Test
      public void verifyPageSubTitle(){
         //login
@@ -64,6 +76,15 @@ private By subtitleBy = By.className("oro-subtitle");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(URL);
+
+    driver.findElement(usernameBy).sendKeys(username);
+    driver.findElement(passwordBy).sendKeys(password, Keys.ENTER);
+
+    BrowserUtilities.wait(3);
+    Actions actions = new Actions(driver);
+
+    actions.moveToElement(driver.findElement(fleetBy)).perform();
+
     }
 
     @AfterMethod
