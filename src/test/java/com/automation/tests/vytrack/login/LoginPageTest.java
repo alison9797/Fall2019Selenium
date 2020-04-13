@@ -25,8 +25,11 @@ public class LoginPageTest {
     //https - data encrypted, no chance for hackers to retrieve info
     // http - data as a plain text, very easy to hack it
     private String URL = "https://qa2.vytrack.com/user/login";
+    //correct credentials for Store Manager
+    private String username = "storemanager85";
+    private String password = "UserUser123";
     private By usernameBy = By.id("prependedInput");
-    private By password = By.id("prependedInput2");
+    private By passwordBy = By.id("prependedInput2");
     //> in css selector means the same thing as / in xpath - direct child
     private By warningMessageBy = By.cssSelector("[class='alert alert-error'] > div");
     //if we not going to use variables in other class, keep them private
@@ -34,7 +37,7 @@ public class LoginPageTest {
     @Test(description = "verify that warning message displays when user enters invalid username")
     public void invalidUsername(){
         driver.findElement(usernameBy).sendKeys("invalidusername");
-        driver.findElement(password).sendKeys("UserUser123", Keys.ENTER);
+        driver.findElement(passwordBy).sendKeys("UserUser123", Keys.ENTER);
         BrowserUtilities.wait(3);
         WebElement warningElement = driver.findElement(warningMessageBy);
         assertTrue(warningElement.isDisplayed());
