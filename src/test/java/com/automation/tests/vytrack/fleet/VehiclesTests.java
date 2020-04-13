@@ -7,6 +7,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -30,7 +31,14 @@ private By subtitleBy = By.className("oro-subtitle");
         //put more wait time here if not clicking
         BrowserUtilities.wait(3);
         //click on Fleet
-        driver.findElement(fleetBy).click();
+        //driver.findElement(fleetBy).click();
+        //Actions class is used for more advanced browser interactions
+        Actions actions = new Actions(driver);
+        //move to element instead of click
+        actions.moveToElement(driver.findElement(fleetBy)).perform();
+        //perform() is to execute command
+        //every actions should end with .perform()
+
         BrowserUtilities.wait(3);
         //click on Vehicles
         driver.findElement(By.linkText("Vehicles")).click();
