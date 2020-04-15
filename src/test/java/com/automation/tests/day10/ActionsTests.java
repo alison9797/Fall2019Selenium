@@ -1,4 +1,5 @@
-package com.automation.tests.day9;
+package com.automation.tests.day10;
+
 
 import com.automation.tests.utilities.BrowserUtilities;
 import com.automation.tests.utilities.DriverFactory;
@@ -15,11 +16,18 @@ public class ActionsTests {
     private WebDriver driver;
     private Actions actions;
 
+
     @BeforeMethod
-    public void setup(){
+    public  void setup(){
         driver = DriverFactory.createDriver("chrome");
         actions = new Actions(driver);
+
+
+
+
     }
+
+
     @Test
     public void hoverOnImage(){
         driver.get("http://practice.cybertekschool.com/hovers");
@@ -28,17 +36,28 @@ public class ActionsTests {
         WebElement img1 = driver.findElement(By.xpath("(//img)[1]"));
         WebElement img2 = driver.findElement(By.xpath("(//img)[2]"));
         WebElement img3 = driver.findElement(By.xpath("(//img)[3]"));
-        //build() is needed when you have couple
+
+        //build() - is needed when you have a couple of actions
         //always end with perform()
-        //actions.moveToElement(img1).pause(1000).build().perform();
-        actions.moveToElement(img1).pause(1000).moveToElement(img2)
-                .pause(1000).moveToElement(img3).build().perform();
+        //pause(1000) -> like a Thread.sleep(1000)
+        actions.moveToElement(img1).
+                pause(1000).
+                moveToElement(img2).
+                pause(1000).
+                moveToElement(img3).
+                build().perform();
+
+
+
+
 
 
 
     }
     @AfterMethod
     public void teardown(){
+        BrowserUtilities.wait(3);
         driver.quit();
     }
+
 }

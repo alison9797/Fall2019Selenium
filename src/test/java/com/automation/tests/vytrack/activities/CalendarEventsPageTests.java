@@ -105,11 +105,7 @@ public class CalendarEventsPageTests {
         String actualTime = driver.findElement(startTimeBy).getAttribute("value");
         Assert.assertEquals(actualTime, expectedTime);
 
-
-
-
     }
-
 
 
     @AfterMethod
