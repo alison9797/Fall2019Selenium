@@ -62,8 +62,44 @@ public class ActionsTests {
         WebElement imgText2 = driver.findElement(By.xpath("//h5[text()='name: user2']"));
         Assert.assertTrue(imgText2.isDisplayed());
 
+    }
+    @Test
+    public void jqueryMenuTest(){
+        driver.get("http://practice.cybertekschool.com/jqueryui/menu");
+        //hover on "enabled"
+        //hover on "downloads"
+        //click on PDF
+        WebElement enabled = driver.findElement(By.id("ui-id-3"));
+        WebElement downloads = driver.findElement(By.id("ui-id-4"));
+        WebElement pdf = driver.findElement(By.id("ui-id-5"));
+
+        actions.moveToElement(enabled).pause(1000).
+                moveToElement(downloads).pause(1000).
+                click(pdf).
+                build().perform();
+    }
 
 
+@Test
+    public void dragAndDropTest(){
+        driver.get("https://demos.telerik.com/kendo-ui/dragdrop/index");
+        driver.manage().window().maximize();
+        BrowserUtilities.wait(3);
+
+        //click on accept cookies
+    driver.findElement(By.xpath("//button[text()='Accept Cookies']")).click();
+    BrowserUtilities.wait(3);
+
+
+        WebElement earth = driver.findElement(By.id("droptarget"));
+
+        WebElement moon = driver.findElement(By.id("draggable"));
+
+        actions.dragAndDrop(moon,earth).perform();
+        String expected = "You did great!";
+        String actual= earth.getText();
+
+        Assert.assertEquals(actual,expected);
 
     }
     @AfterMethod
