@@ -30,6 +30,7 @@ public class ActionsTests {
     public void hoverOnImage(){
         driver.get("http://practice.cybertekschool.com/hovers");
         BrowserUtilities.wait(3);
+        driver.manage().window().maximize();
 
         WebElement img1 = driver.findElement(By.xpath("(//img)[1]"));
         WebElement img2 = driver.findElement(By.xpath("(//img)[2]"));
@@ -56,6 +57,10 @@ public class ActionsTests {
 //verify that webelement that contains the text is visible
         Assert.assertTrue(imgText1.isDisplayed());
 
+        //move to the second image
+        actions.moveToElement(img2).perform();
+        WebElement imgText2 = driver.findElement(By.xpath("//h5[text()='name: user2']"));
+        Assert.assertTrue(imgText2.isDisplayed());
 
 
 
