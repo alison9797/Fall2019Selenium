@@ -1,7 +1,6 @@
 package com.automation.tests.day11;
 
 import com.automation.tests.utilities.BrowserUtilities;
-import com.automation.tests.utilities.DriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -85,7 +84,48 @@ public class WebTables {
          int rowCount = driver.findElements(By.xpath("//table[1]//tbody//tr")).size();
          Assert.assertEquals(rowCount, 3);
 
-         Assert.assertTrue(driver.findElements(By.xpath("//table[1]//td[text()='jsmith@gmail.com']")).isEmpty());
+
+         List<WebElement> emails = driver.findElements(By.xpath("//table[1]//td[text()='jsmith@gmail.com']"));
+         Assert.assertTrue(emails.isEmpty());
+
+    }
+
+    /**
+     * Let's write a function that will return column index based on the column name
+     */
+
+    @Test
+    public void getColumnIndexByName(){
+        String columnName = "Email";
+
+        List<WebElement> columnNames = driver.findElements(By.xpath("//table[2]//th"));
+      int index =0;
+        for (int i = 0; i < columnNames.size(); i++) {
+            String actualColumnName = columnNames.get(i).getText();
+            System.out.println(String.format("Column name: %s, position %s", actualColumnName, i));
+
+            if (columnNames.get(i).getText().equals(columnName)) {
+                index = i +1;
+                break; //no need to keep going
+
+            }
+        }
+
+        Assert.assertEquals(index , 3);
+
+    }
+
+    @Test
+    public void getSpecificCell(){
+
+        String expected = "http://www.jdoe.com";
+        int row = 3 ;
+        int column = 5;
+        String xpath  = "//table[1]//tbody//tr[" + row + "[//td[" + column + "]";
+
+        WebElement cell = driver.findElement(By.xpath(xpath));
+        Assert.assertEquals(cell.getText(), expected);
+
 
     }
 
