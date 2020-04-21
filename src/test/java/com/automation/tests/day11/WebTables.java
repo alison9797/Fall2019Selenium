@@ -55,16 +55,20 @@ public class WebTables {
 
     @Test
     public void verifyRowCount(){
-        // //tbody//tr -> to get all roes table body, excluding table header
+        // //tbody//tr -> to get all rows from table body, excluding table header
         List<WebElement> rows = driver.findElements(By.xpath("//table[1]//tbody//tr"));
-        //if we will get the size of this collective, it automatically equals to number of elements
+        //if we will get the size of this collection, it automatically equals to number of elements
+        //expected 4 rows in the table
         Assert.assertEquals(rows.size(), 4);
     }
-    //to get specific column, skip rpw index , and just provide td index
+
+
+    //to get specific column, skip row index , and just provide td index
     @Test
     public void getSpecificColumn(){
 
         //td[5] -column with links
+        //we are not specifying the row , to include all of them
         List<WebElement> links = driver.findElements(By.xpath("//table[1]//tbody//tr//td[5]"));
         System.out.println( BrowserUtilities.getTextFromWebElements(links));
 
@@ -72,7 +76,7 @@ public class WebTables {
 
 ////table[1]//td[text()='jdoe@hotmail.com']//following-sibling::td/a[text()='delete']
    //go to tables
-    //delete record with jsmith email
+    //delete record with jsmith@gmail.com
     //verify that number of row is equals to 3
     //verify that jsmith gmail doesn't exists any more in the table
 @Test
