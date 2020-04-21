@@ -35,6 +35,10 @@ public class WebTablesTest {
             String value = column.get(i).getText();
             String nextValue = column.get(i+1).getText();
             Assert.assertTrue(value.compareTo(nextValue) <= 0);
+            //compareTo method --> if result is 0 , it's means string are the same
+            //if difference is negative - order value is before nextValue on alphabetic order
+            //if difference is positive - order value is after nextValue in alphabetic order
+            //if difference is 0 - they are equal
         }
 
     }
