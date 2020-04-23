@@ -17,7 +17,9 @@ public class ConfigurationReaderTest {
 
         String storeManager= ConfigurationReader.getProperty("store_manager");
         String password= ConfigurationReader.getProperty("password");
+        String driver = ConfigurationReader.getProperty("driver");
 
+        System.out.println(driver);
         System.out.println(storeManager);
         System.out.println(password);
 
