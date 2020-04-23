@@ -1,5 +1,6 @@
-package com.automation.tests.utilities;
+package com.automation.tests.day12;
 
+import com.automation.tests.utilities.DriverFactory;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
