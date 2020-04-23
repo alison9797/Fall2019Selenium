@@ -74,6 +74,30 @@ public class ExplicitWait {
 
     }
 
+    @Test
+    public void elementToBeClickableTest(){
+        driver.get("http://practice.cybertekschool.com/dynamic_loading/5");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+        WebElement username = driver.findElement(By.name("username"));
+        WebElement password = driver.findElement(By.name("password"));
+        WebElement submitBtn = driver.findElement(By.cssSelector("button[type='submit']"));
+
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loadingoverlay")));
+        wait.until(ExpectedConditions.elementToBeClickable(submitBtn));
+
+        username.sendKeys("tomsmith");
+        password.sendKeys("SuperSecretPassword");
+        submitBtn.click();
+
+        String expected  ="Welcome to the Secure Area. When you are done click logout below.";
+        String actual = driver.findElement(By.className("subheader")).getText();
+
+        Assert.assertEquals(actual, expected);
+
+
+    }
 
     @AfterMethod
     public void teardown(){
