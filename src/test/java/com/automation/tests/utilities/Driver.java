@@ -5,6 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+//from now on , every single test will use same WebDriver object.
+//It's shared, since it's static.
+//Static belongs to class, not to object.
+
 public class Driver {
     //same for everyone
     private static WebDriver driver;
@@ -15,7 +19,7 @@ public class Driver {
 
     }
 
-    private WebDriver getDriver(){
+    public static WebDriver getDriver(){
 
         if (driver == null){
             //specify browser type in configuration.properties file
