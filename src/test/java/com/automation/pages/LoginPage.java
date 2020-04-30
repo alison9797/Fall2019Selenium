@@ -17,16 +17,19 @@ public class LoginPage {
     @FindBy(id="prependedInput")
     private WebElement username;
 
-
     @FindBy(id = "prependedInput2")
     private WebElement password;
-
 
     @FindBy(id = "_submit")
   private WebElement login;
 
     @FindBy(linkText = "Forgot your password?")
     private WebElement forgotPassword;
+
+    @FindBy(css = "[class='alert alert-error']")
+    private WebElement warningMessage;
+
+
 
     //THIS IS CONSTRUCTOR
     public LoginPage(){
@@ -38,6 +41,12 @@ public class LoginPage {
         //this line will be always the same
         PageFactory.initElements(Driver.getDriver(), this);
 
+    }
+
+    //method that returns a text of warning message webelement
+    // Call it in the test class
+    public String getWarningMessageText(){
+        return warningMessage.getText();
     }
 
     /***

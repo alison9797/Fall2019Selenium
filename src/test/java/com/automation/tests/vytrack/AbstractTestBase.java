@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 
 //this class has to be extended, because it's abstract
 //not using on it's own
-public abstract class TestBase {
+public abstract class AbstractTestBase {
     //will be visible in the subclass. regardless on subclass location(same package or no)
     protected WebDriverWait wait;
     protected Actions actions;
