@@ -1,28 +1,32 @@
 package com.automation.pages;
 
 //make this Driver comes from utilities
+import com.automation.tests.utilities.BrowserUtilities;
 import com.automation.tests.utilities.ConfigurationReader;
 import com.automation.tests.utilities.Driver;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.security.Key;
 
 public class LoginPage {
 
     //these two are instant variables
     @FindBy(id="prependedInput")
-    public WebElement username;
+    private WebElement username;
 
 
     @FindBy(id = "prependedInput2")
-    public WebElement password;
+    private WebElement password;
 
 
     @FindBy(id = "_submit")
-    public WebElement login;
+  private WebElement login;
 
     @FindBy(linkText = "Forgot your password?")
-    public WebElement forgotPassword;
+    private WebElement forgotPassword;
 
     //THIS IS CONSTRUCTOR
     public LoginPage(){
@@ -40,10 +44,12 @@ public class LoginPage {
      * Method to login , version #1
      * @param usernameValue
      * @param passwordValue
+     * log in as a specific user
      */
     public void login(String usernameValue , String passwordValue){
         username.sendKeys(usernameValue);
-        password.sendKeys(passwordValue);
+        password.sendKeys(passwordValue, Keys.ENTER);
+        BrowserUtilities.wait(3);
     }
 
     /***
@@ -52,7 +58,8 @@ public class LoginPage {
      */
     public  void login(){
         username.sendKeys(ConfigurationReader.getProperty("store_manager"));
-        password.sendKeys(ConfigurationReader.getProperty("password"));
+        password.sendKeys(ConfigurationReader.getProperty("password"), Keys.ENTER);
+        BrowserUtilities.wait(3);
     }
     }
 
