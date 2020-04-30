@@ -28,7 +28,7 @@ public abstract class AbstractPageBase {
     /***
      * Method for vytrack navigation. Provide tab and module name to navigate
      *
-     * @param tabName like Dashboars, Fleet or Customers
+     * @param tabName like Dashboards, Fleet or Customers
      * @param moduleNAme like Vehicles, Vehicles Odometer and Vehicle Costs
      */
 
