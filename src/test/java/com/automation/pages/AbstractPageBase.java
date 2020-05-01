@@ -6,7 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.nio.channels.AcceptPendingException;
@@ -23,8 +25,16 @@ public abstract class AbstractPageBase {
     protected WebDriver driver = Driver.getDriver();
     protected WebDriverWait wait = new WebDriverWait(driver, 15);
 
+    @FindBy(css= "#user-menu > a")
+    protected WebElement currentUser;
     public AbstractPageBase(){
         PageFactory.initElements(Driver.getDriver(), this);
+    }
+
+    public String getCurrentUserName(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.visibilityOf(currentUser));
+        return currentUser.getText().trim();
     }
 
     /***
