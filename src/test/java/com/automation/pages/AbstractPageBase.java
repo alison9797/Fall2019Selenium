@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.nio.channels.AcceptPendingException;
 
@@ -20,6 +21,7 @@ import java.nio.channels.AcceptPendingException;
 public abstract class AbstractPageBase {
 
     protected WebDriver driver = Driver.getDriver();
+    protected WebDriverWait wait = new WebDriverWait(driver, 15);
 
     public AbstractPageBase(){
         PageFactory.initElements(Driver.getDriver(), this);
