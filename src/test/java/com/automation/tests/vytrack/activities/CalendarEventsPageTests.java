@@ -72,9 +72,6 @@ public class CalendarEventsPageTests {
 
     Click on Create Calendar Events
     Default owner name should be the same as current user name
-    Default title should be blank
-    Default start date should be current date
-    Default start time should be current time
      */
 
     @Test(description = "Default Options")

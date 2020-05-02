@@ -41,11 +41,16 @@ public class BrowserUtilities {
     }
 
     /**
-     * Clicks on an element using JavaScript
+     * Scroll to  an element using JavaScript
      * @param element
      */
     public static void clickWithJS(WebElement element){
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", element);
+    }
+
+    public static void scrollTo(WebElement element){
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+
     }
 }
