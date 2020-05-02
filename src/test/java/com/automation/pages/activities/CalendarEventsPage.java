@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.List;
+
 public class CalendarEventsPage extends AbstractPageBase {
 
     @FindBy(css = "[title='Create Calendar event']")
@@ -24,6 +26,18 @@ private WebElement createCalendarEvent;
 
     @FindBy(css = "[id^='time_selector_oro_calendar_event_form_end']")
     private WebElement endTime;
+
+
+    @FindBy(className = "grid-header-cell__label")
+    private List<WebElement> columnNames;
+
+
+    public List<String> getColumnNames(){
+        BrowserUtilities.waitForPageToLoad(20);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[id^='time_selector_oro_calendar_event_form_start']")));
+        wait.until(ExpectedConditions.visibilityOf(startTime));
+        return BrowserUtilities.getTextFromWebElements(columnNames);
+    }
 
     public String getStartTime(){
         BrowserUtilities.waitForPageToLoad(20);
