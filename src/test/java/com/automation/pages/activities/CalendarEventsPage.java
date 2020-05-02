@@ -15,8 +15,28 @@ private WebElement createCalendarEvent;
     @FindBy(className = "select2-chosen")
     private WebElement owner;
 
-    @FindBy(css = "[id ^='date_selector_oro_calendar_event_form_start-uid-5eacbeb17ad62']")
+    @FindBy(css = "[id^='date_selector_oro_calendar_event_form_start']")
     private WebElement startDate;
+
+    @FindBy(css = "[id^='time_selector_oro_calendar_event_form_start']")
+    private WebElement startTime;
+
+
+    @FindBy(css = "[id^='time_selector_oro_calendar_event_form_end']")
+    private WebElement endTime;
+
+    public String getStartTime(){
+        BrowserUtilities.waitForPageToLoad(20);
+        return startTime.getAttribute("value");
+    }
+
+
+
+    public String getEndTime(){
+        BrowserUtilities.waitForPageToLoad(20);
+        return endTime.getAttribute("value");
+    }
+
 
     //whe we put current user element under base page class and owner element under create calendar event page class?
     //"current owner" element belongs to top menu
@@ -48,3 +68,4 @@ private WebElement createCalendarEvent;
     }
 
 }
+// time left 1 hour an 30 minutes

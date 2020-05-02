@@ -26,11 +26,21 @@ public class NewCalendarEventsTests extends AbstractTestBase {
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
         calendarEventsPage.clickToCreateCalendarEvent();
+
         Assert.assertEquals(calendarEventsPage.getOwnerName(), calendarEventsPage.getCurrentUserName());
 
         String actualStartDate = calendarEventsPage.getStartDate();
         String expectedStartDate = DateTimeUtilities.getCurrentDate("MMM dd, yyyy");
-        Assert.assertEquals(calendarEventsPage.getStartDate() , DateTimeUtilities.getCurrentDate("MMM dd, yyyy"));
+        Assert.assertEquals(actualStartDate, expectedStartDate);
+    }
+
+    public void timeDifferenceTest(){
+        loginPage.login();
+        calendarEventsPage.navigateTo("Activities", "Calendar Events");
+        calendarEventsPage.clickToCreateCalendarEvent();
+
+String actual = DateTimeUtilities.
+
     }
 
 

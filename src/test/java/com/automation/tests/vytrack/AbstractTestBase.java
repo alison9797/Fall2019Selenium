@@ -2,7 +2,6 @@ package com.automation.tests.vytrack;
 
 import com.automation.tests.utilities.ConfigurationReader;
 import com.automation.tests.utilities.Driver;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
