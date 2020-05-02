@@ -27,6 +27,7 @@ private WebElement createCalendarEvent;
 
     public String getStartTime(){
         BrowserUtilities.waitForPageToLoad(20);
+        wait.until(ExpectedConditions.visibilityOf(startTime));
         return startTime.getAttribute("value");
     }
 
@@ -34,6 +35,7 @@ private WebElement createCalendarEvent;
 
     public String getEndTime(){
         BrowserUtilities.waitForPageToLoad(20);
+        wait.until(ExpectedConditions.visibilityOf(endTime));
         return endTime.getAttribute("value");
     }
 
