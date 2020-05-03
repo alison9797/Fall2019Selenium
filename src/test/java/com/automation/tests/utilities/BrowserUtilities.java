@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,10 +70,13 @@ public class BrowserUtilities {
      */
     public static String getScreenshot(String name)  {
         //this is where screenshot will be stored
+        name = LocalDateTime.now() + "_" + name  ;
         String path = System.getProperty("user.dir") + "/test-output/screenshots/" + name +".png";
         System.out.println("Screenshot is here: " + path);
         TakesScreenshot takesScreenshot = (TakesScreenshot) Driver.getDriver();
-        //screenshot itself
+        //take screenshot of web browser
+        //and save it as a file
+        //this is just the one line that do everything
         File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
         //this is where screenshot will be saved
         File destination = new File(path);
