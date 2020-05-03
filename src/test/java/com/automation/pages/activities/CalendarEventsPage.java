@@ -34,8 +34,7 @@ private WebElement createCalendarEvent;
 
     public List<String> getColumnNames(){
         BrowserUtilities.waitForPageToLoad(20);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[id^='time_selector_oro_calendar_event_form_start']")));
-        wait.until(ExpectedConditions.visibilityOf(startTime));
+
         return BrowserUtilities.getTextFromWebElements(columnNames);
     }
 
