@@ -5,6 +5,7 @@ import com.automation.tests.utilities.BrowserUtilities;
 import com.automation.tests.utilities.Driver;
 import com.automation.tests.vytrack.AbstractTestBase;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class NewLoginTests extends AbstractTestBase {
@@ -36,6 +37,37 @@ public class NewLoginTests extends AbstractTestBase {
         //take a screenshot
         BrowserUtilities.getScreenshot("LoginPage");
         test.pass("Warning message is displayed");
+    }
+
+
+    @Test(dataProvider = "credentials")
+    public void loginWithDDT(String username , String password){
+        test = report.createTest("Verify page title");
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(username, password);
+        test.info("Login as");
+        BrowserUtilities.wait(2);
+        Assert.assertEquals(Driver.getDriver().getTitle(), "Dashboard");
+        test.pass("Page title Dashboard was verified");
+
+    }
+
+
+    @DataProvider
+    public Object[] [] credentials(){
+        return new Object[][]{
+                //we have three sets of test data
+                //so test will be run 3 times
+                //   username          password
+                {"storemanager85",  "UserUser123"},
+                {"salesmanager110", "UserUser123"},
+                {"user16",          "UserUser123"}
+                //can return Object[][] or Object[] or Iterator<Object[]>
+                //Object[] - 1 column with a data
+                //Object[][] 2+
+                //two dimensional array
+        };
+
     }
 
 

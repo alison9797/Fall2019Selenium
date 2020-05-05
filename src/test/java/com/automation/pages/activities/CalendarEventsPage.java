@@ -12,7 +12,7 @@ import java.util.List;
 public class CalendarEventsPage extends AbstractPageBase {
 
     @FindBy(css = "[title='Create Calendar event']")
-private WebElement createCalendarEvent;
+    private WebElement createCalendarEvent;
 
     @FindBy(className = "select2-chosen")
     private WebElement owner;
@@ -31,6 +31,57 @@ private WebElement createCalendarEvent;
     @FindBy(className = "grid-header-cell__label")
     private List<WebElement> columnNames;
 
+    @FindBy(css = "[id^='oro_calendar_event_form_title-uid']")
+    private WebElement title;
+
+
+    @FindBy(css = "iframe[id^='oro_calendar_event_form_description-uid']")
+    private WebElement descriptionFrame;
+
+
+    @FindBy(id = "tinymce")
+    private WebElement descriptionTextArea;
+
+    @FindBy(css = "[class='btn-group pull-right'] > button")
+    private WebElement saveAndClose;
+
+
+    @FindBy(xpath = "(//div[@class='control-label'])[1]")
+    private WebElement generalInfoTitle;
+
+    @FindBy(xpath = "//label[text()='Description']/following-sibling::div//div")
+    private WebElement  generalInfoDescription;
+
+
+    public void enterCalendarEventTitle(String titleValue) {
+        BrowserUtilities.waitForPageToLoad(20);
+        wait.until(ExpectedConditions.visibilityOf(title)).sendKeys(titleValue);
+    }
+
+    public void enterCalendarEventDescription(String description){
+        //wait until frame is available and switch to it
+        BrowserUtilities.waitForPageToLoad(20);
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(descriptionFrame));
+        descriptionTextArea.sendKeys(description);
+        driver.switchTo().defaultContent();//exit from the frame
+    }
+    public void clickOnSaveAndClose() {
+        BrowserUtilities.waitForPageToLoad(20);
+        wait.until(ExpectedConditions.elementToBeClickable(saveAndClose)).click();
+    }
+
+    public String getGeneralInfoTitleText(){
+        BrowserUtilities.waitForPageToLoad(20);
+        return generalInfoTitle.getText();
+    }
+
+    public String getGeneralInfoDescriptionText(){
+        BrowserUtilities.waitForPageToLoad(20);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[text()='Description']/following-sibling::div//div")));
+        return generalInfoDescription.getText();
+    }
+
+//###################################################################
 
     public List<String> getColumnNames(){
         BrowserUtilities.waitForPageToLoad(20);
@@ -83,4 +134,3 @@ private WebElement createCalendarEvent;
     }
 
 }
-// time left 1 hour an 30 minutes

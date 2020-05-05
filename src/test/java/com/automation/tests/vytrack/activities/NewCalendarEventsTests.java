@@ -5,6 +5,7 @@ import com.automation.pages.activities.CalendarEventsPage;
 import com.automation.tests.utilities.DateTimeUtilities;
 import com.automation.tests.vytrack.AbstractTestBase;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -61,5 +62,29 @@ public class NewCalendarEventsTests extends AbstractTestBase {
         List<String> expected = Arrays.asList("TITLE", "CALENDAR", "START", "END", "RECURRENT", "RECURRENCE", "INVITATION STATUS");
         Assert.assertEquals(calendarEventsPage.getColumnNames(), expected);
 
+    }
+
+    @Test(dataProvider = "calendarEvents")
+    public void createCalendarEventTest(String title, String description){
+        test = report.createTest("Create calendar event");
+        loginPage.login();
+        calendarEventsPage.navigateTo("Activities", "Calendar Events");
+        calendarEventsPage.clickToCreateCalendarEvent();
+        calendarEventsPage.enterCalendarEventTitle(title);
+        calendarEventsPage.enterCalendarEventDescription(description);
+        calendarEventsPage.clickOnSaveAndClose();
+
+        Assert.assertEquals(calendarEventsPage.getGeneralInfoDescriptionText(), description);
+        Assert.assertEquals(calendarEventsPage.getGeneralInfoTitleText(), title);
+    //for extent report. specify that test passed in report (if all assertion passed
+        test.pass("Calendar event was created successfully!");
+    }
+
+    @DataProvider
+    public Object[][] calendarEvents(){
+       return new Object[][]{
+            {"Daily Stand-up", "Scrum meeting to provide updates"}
+
+        };
     }
 }
