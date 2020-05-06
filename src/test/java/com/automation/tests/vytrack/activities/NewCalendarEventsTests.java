@@ -26,7 +26,9 @@ public class NewCalendarEventsTests extends AbstractTestBase {
 
     @Test
     public void defaultOptionsTest(){
-
+        LoginPage loginPage = new LoginPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+        test = report.createTest("Verify default login options");
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
         calendarEventsPage.clickToCreateCalendarEvent();
@@ -40,6 +42,10 @@ public class NewCalendarEventsTests extends AbstractTestBase {
 
     @Test
     public void timeDifferenceTest(){
+        LoginPage loginPage = new LoginPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+        test = report.createTest("Verify time difference");
+
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
         calendarEventsPage.clickToCreateCalendarEvent();
@@ -56,6 +62,10 @@ public class NewCalendarEventsTests extends AbstractTestBase {
 
     @Test
     public void verifyColumnNamesTest(){
+        LoginPage loginPage = new LoginPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+        test = report.createTest("Verify column names");
+
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
 

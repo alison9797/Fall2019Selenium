@@ -9,10 +9,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 
@@ -28,9 +25,22 @@ public abstract class AbstractTestBase {
     protected ExtentTest test;
 
     @BeforeTest
-    public void setupTest(){
+    @Parameters("reportName")
+    //                   it's makes this parameter optional
+    //if you don't specify it , testng will require to specify this parameter
+    // for every test, in xml runner
+    public void setupTest(@Optional String reportName){
+        System.out.println("Report name " + reportName);
+        String reportNameString = reportName == null ? "report.html" : reportName + ".html";
         report = new ExtentReports();
-        String reportPath = System.getProperty("user.dir") + "/test-output/report.html";
+        String reportPath = "";
+
+        //location of report file
+        if (System.getProperty("os.name").toLowerCase().contains("win")) {
+            reportPath = System.getProperty("user.dir") + "\\test-output\\" + reportNameString;
+        } else{
+            reportPath = System.getProperty("user.dir") + "/test-output/" + reportNameString;
+        }
         //html report itself
         htmlReporter = new ExtentHtmlReporter(reportPath);
         //add it to reporter
@@ -47,7 +57,7 @@ public abstract class AbstractTestBase {
 
     @BeforeMethod
     public void setup(){
-        String URL = ConfigurationReader.getProperty("qa1");
+        String URL = ConfigurationReader.getProperty("qa3");
         Driver.getDriver().get(URL);
         Driver.getDriver().manage().window().maximize();
         wait = new WebDriverWait(Driver.getDriver(), 25);

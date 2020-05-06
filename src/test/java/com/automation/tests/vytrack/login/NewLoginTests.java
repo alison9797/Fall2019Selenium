@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 public class NewLoginTests extends AbstractTestBase {
 
 
-    @Test
+    @Test(groups = "smpke")
     public void verifyPageTitle(){
         //test is coming from extend test
         //we must add to every test at the beginning
@@ -21,7 +21,7 @@ public class NewLoginTests extends AbstractTestBase {
         //its like system.out , but it goes to report
         test.info("Login as store manager");//log some steps
         loginPage.login();
-        Assert.assertEquals(Driver.getDriver().getTitle(), "Dashboards");
+        Assert.assertEquals(Driver.getDriver().getTitle(), "Dashboard");
         //is assertion passed , it will set test status in report to passed
         test.pass("Page title Dashboard was verified");
 
