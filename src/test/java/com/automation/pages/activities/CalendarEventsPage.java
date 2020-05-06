@@ -53,6 +53,8 @@ public class CalendarEventsPage extends AbstractPageBase {
     private WebElement  generalInfoDescription;
 
 
+
+
     public void enterCalendarEventTitle(String titleValue) {
         BrowserUtilities.waitForPageToLoad(20);
         wait.until(ExpectedConditions.visibilityOf(title)).sendKeys(titleValue);

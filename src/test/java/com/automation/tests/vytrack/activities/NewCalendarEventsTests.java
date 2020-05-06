@@ -66,7 +66,14 @@ public class NewCalendarEventsTests extends AbstractTestBase {
 
     @Test(dataProvider = "calendarEvents")
     public void createCalendarEventTest(String title, String description){
-        test = report.createTest("Create calendar event");
+        //if you have more than one test ,and 1st pass but others failing
+        //you are getting session id is null exception
+        //because driver object was not initialized in time
+        //just create page object inside test
+        LoginPage loginPage = new LoginPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+        //only for extent report. To create a test in html report
+        test = report.createTest("Create calendar event for " + title);
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
         calendarEventsPage.clickToCreateCalendarEvent();
@@ -74,8 +81,10 @@ public class NewCalendarEventsTests extends AbstractTestBase {
         calendarEventsPage.enterCalendarEventDescription(description);
         calendarEventsPage.clickOnSaveAndClose();
 
+        //verify that calendar event info is correct
         Assert.assertEquals(calendarEventsPage.getGeneralInfoDescriptionText(), description);
         Assert.assertEquals(calendarEventsPage.getGeneralInfoTitleText(), title);
+
     //for extent report. specify that test passed in report (if all assertion passed
         test.pass("Calendar event was created successfully!");
     }
@@ -83,8 +92,11 @@ public class NewCalendarEventsTests extends AbstractTestBase {
     @DataProvider
     public Object[][] calendarEvents(){
        return new Object[][]{
-            {"Daily Stand-up", "Scrum meeting to provide updates"}
+            {"Daily Stand-up", "Scrum meeting to provide updates"},
+               {"Sprint Review", "Scrum meeting where team discussing previous sprint"},
+               {"Spring Planning", "Scrum meeting where team discussing backlog for following sprint"}
 
         };
     }
 }
+
