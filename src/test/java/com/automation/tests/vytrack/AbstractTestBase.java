@@ -37,9 +37,9 @@ public abstract class AbstractTestBase {
 
         //location of report file
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
-            reportPath = System.getProperty("user.dir") + "\\test-output\\" + reportNameString;
+            reportPath = System.getProperty("user.dir") + "\\test-output\\report.html";
         } else{
-            reportPath = System.getProperty("user.dir") + "/test-output/" + reportNameString;
+            reportPath = System.getProperty("user.dir") + "/test-output/report.html";
         }
         //html report itself
         htmlReporter = new ExtentHtmlReporter(reportPath);

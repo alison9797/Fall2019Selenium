@@ -23,7 +23,7 @@ public class ConfigurationReader {
             input.close();
         } catch (Exception e) {
             e.printStackTrace();
-        throw new RuntimeException("Failed to load properties file!");
+            throw new RuntimeException("Failed to load properties file!");
         }
 
     }
