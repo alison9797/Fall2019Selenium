@@ -71,11 +71,13 @@ public abstract class AbstractTestBase {
         //ITestResult class describes the result of a test.
         //if test failed , take a screenshot
     if (iTestResult.getEndMillis() == ITestResult.FAILURE){
-  String screenshotPath =   BrowserUtilities.getScreenshot(iTestResult.getName());
-    test.addScreenCaptureFromPath(screenshotPath);
-    BrowserUtilities.wait(2);
-    test.fail(iTestResult.getName());//attach test name that failed
-    test.fail(iTestResult.getThrowable());//attach console output
+
+        //screenshot will have a name of the test
+        String screenshotPath =   BrowserUtilities.getScreenshot(iTestResult.getName());
+        test.fail(iTestResult.getName());//attach test name that failed
+        BrowserUtilities.wait(2);
+        test.addScreenCaptureFromPath(screenshotPath, "Failed");//attach screenshot
+        test.fail(iTestResult.getThrowable());//attach console output
 }
     BrowserUtilities.wait(2);
         Driver.closeDriver();
